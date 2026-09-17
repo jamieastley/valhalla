@@ -1,0 +1,306 @@
+name: valhalla-valheim
+services:
+  init-permissions:
+    command:
+      - sh
+      - -c
+      - chown -R 1000:1000 /home/steam/.config/unity3d/IronGate/Valheim /home/steam
+    image: busybox:1.38.0
+    networks:
+      default: null
+    restart: 'no'
+    volumes:
+      - type: volume
+        target: saves
+        volume: {}
+      - type: volume
+        target: server-data
+        volume: {}
+      - type: volume
+        target: backups
+        volume: {}
+      - type: bind
+        source: /home/jamie/Workspace/homelab/games/valheim/mod_configs
+        target: /home/steam/valheim/BepInEx/config
+        bind: {}
+  server:
+    cap_drop:
+      - ALL
+    environment:
+      AUTO_BACKUP: "true"
+      AUTO_BACKUP_DAYS_TO_LIVE: "7"
+      AUTO_BACKUP_ON_SHUTDOWN: "1"
+      AUTO_BACKUP_ON_UPDATE: "1"
+      AUTO_BACKUP_REMOVE_OLD: "1"
+      AUTO_UPDATE: "0"
+      HTTP_PORT: "3000"
+      MODIFIERS: resources=more,raids=less,portals=casual
+      MODS: |
+        ts:Advize-Armoire-1.2.1
+        ts:Advize-PlantEverything-1.21.2
+        hex:ArgusMagnus-ServersideQoL-2.0.7
+        hex:ArgusMagnus-ServersideQoL_JustSleep-2.0.0
+        hex:Azumatt-AAA_Crafting-2.1.9
+        hex:Azumatt-AzuAreaRepair-1.1.7
+        hex:Azumatt-AAABuildMenu-1.0.4
+        hex:Azumatt-AzuAutoStore-3.1.4
+        hex:Azumatt-AzuClock-1.1.0
+        hex:Azumatt-AzuContainerSizes-1.1.7
+        hex:Azumatt-AzuCraftyBoxes-1.8.20
+        hex:Azumatt-AzuExtendedPlayerInventory-2.5.0
+        hex:Azumatt-AzuMiscPatches-1.2.9
+        hex:Azumatt-AzuWearNTearPatches-1.0.9
+        hex:Azumatt-AzuWorkbenchTweaks-1.0.7
+        hex:Azumatt-Build_Camera_Custom_Hammers_Edition-1.3.1
+        hex:Azumatt-GhostBuild-1.0.2
+        hex:Azumatt-Hooked-1.1.1
+        hex:Azumatt-PetPantry-1.0.6
+        hex:Azumatt-PerfectPlacement-1.2.3
+        hex:Azumatt-Recycle_N_Reclaim-1.4.4
+        hex:Azumatt-SaveCrossbowState-1.0.3
+        hex:Azumatt-WardIsLove-4.0.0
+        hex:Azumatt-Where_You_At-1.0.13
+        hex:blacks7ar-BeeKeeper-1.0.9
+        hex:blacks7ar-Endurance-1.1.2
+        hex:blacks7ar-Explorer-1.1.6
+        hex:blacks7ar-FeatherCollector-1.2.0
+        hex:blacks7ar-Fermenting-1.1.7
+        hex:blacks7ar-GlassPieces-1.2.7
+        hex:JereKuusela-Server_devcommands-1.113.0
+        hex:OdinPlus-BeeQueen-1.1.2
+        hex:OdinPlus-OdinsFoodBarrels-1.2.6
+        hex:shudnal-ConditionalConfigSync-1.0.6
+        hex:shudnal-ConfigurationManager-1.1.18
+        hex:Smoothbrain-Afterdeath-1.0.9
+        hex:Smoothbrain-Backpacks-1.3.10
+        hex:Smoothbrain-Blacksmithing-1.3.5
+        hex:Smoothbrain-Building-1.2.7
+        hex:Smoothbrain-ConversionSizeAndSpeed-1.0.18
+        hex:Smoothbrain-Cooking-1.2.3
+        hex:Smoothbrain-DarwinAwards-1.0.7
+        hex:Smoothbrain-DualWield-1.0.11
+        hex:Smoothbrain-Evasion-1.0.5
+        hex:Smoothbrain-Farming-2.2.3
+        hex:Smoothbrain-Foraging-1.0.11
+        hex:Smoothbrain-GapFiller-1.0.7
+        hex:Smoothbrain-Groups-1.2.11
+        hex:Smoothbrain-Guilds-1.1.14
+        hex:Smoothbrain-Jewelcrafting-2.0.9
+        hex:Smoothbrain-Lumberjacking-1.0.7
+        hex:Smoothbrain-Mining-1.1.7
+        hex:Smoothbrain-Network-1.1.1
+        hex:Smoothbrain-PackHorse-1.0.5
+        hex:Smoothbrain-PassivePowers-1.1.8
+        hex:Smoothbrain-Ranching-1.1.7
+        hex:Smoothbrain-Sailing-1.1.9
+        hex:Smoothbrain-TargetPortal-1.2.6
+        ts:TastyChickenLegs-LongerDays-1.1.3
+        ts:TastyChickenLegs-RecyclePlus-1.3.3
+        hex:ValheimModding-Jotunn-2.30.0
+        hex:ValheimModding-JsonDotNET-13.0.4
+        hex:ValheimModding-YamlDotNet-16.3.1
+        ts:VentureValheim-Venture_Multiplayer_Tweaks-1.0.0
+      NAME: Valhalla
+      PORT: "2456"
+      PUBLIC: "0"
+      SCHEDULED_RESTART: "1"
+      SCHEDULED_RESTART_SCHEDULE: 0 4 * * *
+      TYPE: BepInEx
+      TZ: Australia/Sydney
+      WORLD: Valhalla
+    image: mbround18/valheim:3.8.4
+    labels:
+      game: valheim
+      tailscale: "true"
+      traefik.docker.network: valhalla-tailscale
+      traefik.enable: "true"
+      traefik.http.routers.huginn.entrypoints: websecure
+      traefik.http.routers.huginn.rule: Host(`huginn.valhalla.objectobject.games`)
+      traefik.http.routers.huginn.tls: "true"
+      traefik.http.routers.huginn.tls.certresolver: letsencrypt
+      traefik.http.services.huginn.loadbalancer.server.port: "3000"
+      traefik.instance: valhalla
+      traefik.udp.routers.valheim1.entrypoints: valheim1
+      traefik.udp.routers.valheim1.service: valheim1
+      traefik.udp.routers.valheim2.entrypoints: valheim2
+      traefik.udp.routers.valheim2.service: valheim2
+      traefik.udp.routers.valheim3.entrypoints: valheim3
+      traefik.udp.routers.valheim3.service: valheim3
+      traefik.udp.services.valheim1.loadbalancer.server.port: "2456"
+      traefik.udp.services.valheim2.loadbalancer.server.port: "2457"
+      traefik.udp.services.valheim3.loadbalancer.server.port: "2458"
+    networks:
+      tailscale: null
+    ports:
+      - mode: ingress
+        target: 2456
+        published: "2456"
+        protocol: udp
+      - mode: ingress
+        target: 2457
+        published: "2457"
+        protocol: udp
+      - mode: ingress
+        target: 2458
+        published: "2458"
+        protocol: udp
+      - mode: ingress
+        target: 3000
+        published: "3000"
+        protocol: tcp
+    security_opt:
+      - no-new-privileges:true
+    stop_signal: SIGINT
+    user: 1000:1000
+    volumes:
+      - type: volume
+        target: saves
+        volume: {}
+      - type: volume
+        target: server-data
+        volume: {}
+      - type: volume
+        target: backups
+        volume: {}
+      - type: bind
+        source: /home/jamie/Workspace/homelab/games/valheim/mod_configs
+        target: /home/steam/valheim/BepInEx/config
+        bind: {}
+  tailscale:
+    cap_add:
+      - NET_ADMIN
+    container_name: _tailscale
+    environment:
+      CF_DOMAIN: objectobject.games
+      TS_AUTHKEY: file:/run/secrets/ts-authkey
+      TS_ENABLE_HEALTH_CHECK: "true"
+      TS_EXTRA_ARGS: --ssh
+      TS_STATE_DIR: var/lib/tailscale
+      TS_USERSPACE: "false"
+      VALHEIM_WORLD_NAME: valheim.objectobject.games
+    healthcheck:
+      test:
+        - CMD
+        - wget
+        - --spider
+        - -q
+        - http://127.0.0.1:9002/healthz
+    image: tailscale/tailscale:v1.102.3
+    networks:
+      tailscale: null
+    restart: unless-stopped
+    secrets:
+      - source: ts-authkey
+        target: /run/secrets/ts-authkey
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+      - type: bind
+        source: /dev/net/tun
+        target: /dev/net/tun
+        bind: {}
+      - type: volume
+        source: tailscale
+        target: /var/lib/tailscale
+        volume: {}
+  traefik:
+    cap_drop:
+      - ALL
+    command:
+      - --accesslog=true
+      - --api.insecure=true
+      - --api.debug=true
+      - --providers.docker=true
+      - --providers.docker.exposedbydefault=false
+      - --providers.docker.constraints=Label(`traefik.instance`,`valhalla`)
+      - --providers.file.watch=true
+      - --providers.file.directory=/etc/traefik
+      - --ping=true
+      - --ping.entrypoint=traefik
+      - --entrypoints.web.address=:80
+      - --entrypoints.web.http.redirections.entryPoint.to=websecure
+      - --entrypoints.web.http.redirections.entryPoint.scheme=https
+      - --entrypoints.websecure.address=:443
+      - --entrypoints.websecure.http.tls=true
+      - --entrypoints.websecure.http.tls.certResolver=letsencrypt
+      - --entrypoints.valheim1.address=:2456/udp
+      - --entrypoints.valheim2.address=:2457/udp
+      - --entrypoints.valheim3.address=:2458/udp
+      - --certificatesresolvers.letsencrypt.acme.dnschallenge=true
+      - --certificatesresolvers.letsencrypt.acme.dnschallenge.provider=cloudflare
+      - --certificatesresolvers.letsencrypt.acme.email=
+      - --certificatesresolvers.letsencrypt.acme.caServer=https://acme-v02.api.letsencrypt.org/directory
+      - --certificatesResolvers.letsencrypt.acme.storage=/certs/acme.json
+      - --certificatesResolvers.letsencrypt.acme.dnsChallenge.resolvers=1.1.1.1:53,8.8.8.8:53
+    container_name: _traefik
+    depends_on:
+      tailscale:
+        condition: service_started
+        required: true
+    environment:
+      CF_API_EMAIL: ""
+      CF_DNS_API_TOKEN_FILE: run/secrets/cf_dns_api_token
+      CF_DOMAIN: objectobject.games
+      LEGO_DISABLE_CNAME_SUPPORT: "true"
+      TZ: Australia/Sydney
+      VALHEIM_WORLD_NAME: valheim.objectobject.games
+    healthcheck:
+      test:
+        - CMD
+        - traefik
+        - healthcheck
+        - --ping
+      timeout: 10s
+      interval: 30s
+      retries: 3
+    image: traefik:v3.7.13
+    labels:
+      game: valheim
+      tailscale: "true"
+      traefik.enable: "true"
+      traefik.http.routers.traefik.entrypoints: websecure
+      traefik.http.routers.traefik.rule: Host(`traefik.valhalla.objectobject.games`)
+      traefik.http.routers.traefik.service: api@internal
+      traefik.http.routers.traefik.tls.certresolver: letsencrypt
+      traefik.http.services.traefik.loadbalancer.server.port: "8080"
+      traefik.instance: valhalla
+    network_mode: service:tailscale
+    restart: unless-stopped
+    secrets:
+      - source: cf-dns-api-token
+        target: /run/secrets/cf-dns-api-token
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+      - type: bind
+        source: /var/run/docker.sock
+        target: /var/run/docker.sock
+        read_only: true
+        bind: {}
+      - type: bind
+        source: /home/jamie/Workspace/homelab/shared/traefik
+        target: /etc/traefik
+        bind: {}
+      - type: volume
+        source: traefik-certs
+        target: /certs
+        volume: {}
+networks:
+  default:
+    name: valhalla-valheim_default
+  tailscale:
+    name: valhalla-tailscale
+volumes:
+  tailscale:
+    name: valhalla-tailscale
+    external: true
+  traefik-certs:
+    name: valhalla-traefik-certs
+    external: true
+secrets:
+  cf-dns-api-token:
+    name: valhalla-valheim_cf-dns-api-token
+    file: /home/jamie/Workspace/homelab/games/valheim/secrets/cf_dns_api_token
+  ts-authkey:
+    name: valhalla-valheim_ts-authkey
+    file: /home/jamie/Workspace/homelab/games/valheim/secrets/ts_authkey

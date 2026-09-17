@@ -42,3 +42,6 @@ terraform.rc
 # IDE
 .idea/**
 !.idea/icon.svg
+
+# Project
+adminlist.txt
