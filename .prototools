@@ -1,0 +1,7 @@
+terraform = "1.16"
+
+[tools.terraform]
+plugin = "https://raw.githubusercontent.com/theomessin/proto-toml-plugins/master/terraform.toml"
+
+[settings]
+unstable-lockfile = true

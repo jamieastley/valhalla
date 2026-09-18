@@ -48,7 +48,7 @@ override.tf.json
 terraform.rc
 
 # Environment
-**/**.env
+.env
 **/secrets/**
 
 # IDE
