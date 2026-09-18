@@ -5,6 +5,10 @@ A modded Valheim server.
 Game data such as world saves, mod configs, server data and save backups are all stored in their own
 external Docker volumes and should be created before running `docker compose up`.
 
+## World Seed
+
+The current world seed for this playthrough is `Y0IRrfwvzK`.
+
 ## Getting started
 
 - create `adminlist.txt`, populate with [steamID64](https://steamid.io/) _on separate lines_ and
