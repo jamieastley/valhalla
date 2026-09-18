@@ -195,7 +195,6 @@ services:
         hex:Smoothbrain-Sailing-1.1.9
         hex:Smoothbrain-ServerCharacters-1.4.17
         hex:Smoothbrain-TargetPortal-1.2.6
-        ts:TastyChickenLegs-LongerDays-1.1.4
         hex:ValheimModding-Jotunn-2.30.0
         hex:ValheimModding-JsonDotNET-13.0.4
         hex:ValheimModding-YamlDotNet-16.3.1
