@@ -101,7 +101,7 @@ services:
       - traefik.http.services.traefik.loadbalancer.server.port=8080
 
   server:
-    image: mbround18/valheim:3.8.4
+    image: mbround18/valheim:3.8.5
     container_name: "valhalla_server"
     user: "1000:1000"
     stop_signal: SIGINT
