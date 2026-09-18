@@ -37,14 +37,6 @@ Create the following files under `./secrets/` before running `docker compose up`
 | `./secrets/ts_authkey`       | Tailscale [auth key](https://tailscale.com/kb/1085/auth-keys) used to join the tailnet.                                                                  |
 | `./secrets/cf_dns_api_token` | Cloudflare [DNS API token](https://developers.cloudflare.com/fundamentals/api/get-started/create-token/) with `Zone:DNS:Edit` permission for the domain. |
 
-## Mods to add
+## Mods
 
-### Client-side only
-
-- https://valheim.hexium.gg/mods/Azumatt/ItemCompare
-- https://valheim.hexium.gg/mods/Azumatt/AzuHoverStats
-- https://valheim.hexium.gg/mods/Azumatt/ChangeOfScenery
-- https://valheim.hexium.gg/mods/Azumatt/CurrencyPocket
-- https://valheim.hexium.gg/mods/Azumatt/Minimal_UI
-- https://valheim.hexium.gg/mods/Azumatt/TooltipExpansion
-- https://valheim.hexium.gg/mods/Azumatt/Recipe_Description_Expansion
+Import `7TNNDJ` as a profile code within Gale.
