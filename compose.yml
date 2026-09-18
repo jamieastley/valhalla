@@ -135,7 +135,7 @@ services:
       TYPE: "BepInEx"
       MODIFIERS: "resources=more,raids=less,portals=casual"
       MODS: |
-        ts:Advize-Armoire-1.2.1
+        ts:Advize-Armoire-1.2.2
         ts:Advize-PlantEverything-1.21.2
         hex:Azumatt-AAA_Crafting-2.1.10
         hex:Azumatt-AzuAreaRepair-1.1.8
