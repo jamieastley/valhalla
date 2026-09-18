@@ -201,7 +201,7 @@ services:
         hex:Smoothbrain-Sailing-1.1.9
         hex:Smoothbrain-ServerCharacters-1.4.17
         hex:Smoothbrain-TargetPortal-1.2.6
-        hex:ValheimModding-Jotunn-2.30.0
+        hex:ValheimModding-Jotunn-2.30.1
         hex:ValheimModding-JsonDotNET-13.0.4
         hex:ValheimModding-YamlDotNet-16.3.1
         ts:VentureValheim-Venture_Multiplayer_Tweaks-1.0.0
