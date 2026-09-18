@@ -36,9 +36,12 @@ override.tf.json
 terraform.rc
 
 # Environment
-**/**.env
+.env
 **/secrets/**
 
 # IDE
 .idea/**
 !.idea/icon.svg
+
+# Project
+adminlist.txt
