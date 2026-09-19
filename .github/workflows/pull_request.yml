@@ -1,0 +1,27 @@
+name: "Validate Terraform modules"
+
+on:
+  pull_request:
+    branches:
+      - master
+  push:
+    branches:
+      - master
+      - feature/pr-actions # remove before PR
+
+jobs:
+  validate_modules:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        module:
+          - infra/dns
+    name: "Validate ${{ matrix.module }} module"
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - uses: ./.github/actions/setup
+        id: setup
+        with:
+          working-directory: '${{ matrix.module }}'
