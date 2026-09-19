@@ -134,75 +134,8 @@ services:
       SCHEDULED_RESTART_SCHEDULE: "0 4 * * *" # Every day at 4am
       TYPE: "BepInEx"
       MODIFIERS: "resources=more,raids=less,portals=casual"
-      MODS: |
-        ts:Advize-Armoire-1.2.2
-        ts:Advize-PlantEverything-1.21.2
-        hex:Azumatt-AAA_Crafting-2.1.10
-        hex:Azumatt-AzuAreaRepair-1.1.8
-        hex:Azumatt-AAABuildMenu-1.0.5
-        hex:Azumatt-AzuAutoStore-3.1.6
-        hex:Azumatt-AzuClock-1.1.1
-        hex:Azumatt-AzuContainerSizes-1.1.8
-        hex:Azumatt-AzuCraftyBoxes-1.8.22
-        hex:Azumatt-AzuExtendedPlayerInventory-2.5.1
-        hex:Azumatt-AzuMiscPatches-1.2.10
-        hex:Azumatt-AzuWearNTearPatches-1.0.10
-        hex:Azumatt-AzuWorkbenchTweaks-1.0.8
-        hex:Azumatt-Build_Camera_Custom_Hammers_Edition-1.3.3
-        hex:Azumatt-GhostBuild-1.0.3
-        hex:Azumatt-HearthBelow-0.6.2
-        hex:Azumatt-Hooked-1.1.2
-        hex:Azumatt-PetPantry-1.0.7
-        hex:Azumatt-PerfectPlacement-1.2.4
-        hex:Azumatt-Recycle_N_Reclaim-1.4.5
-        hex:Azumatt-RepairStation-1.2.8
-        hex:Azumatt-SaveCrossbowState-1.0.4
-        hex:Azumatt-SleepSkip-1.3.2
-        hex:Azumatt-WardIsLove-4.0.2
-        hex:Azumatt-Where_You_At-1.1.0
-        hex:blacks7ar-BeeKeeper-1.1.0
-        hex:blacks7ar-Endurance-1.1.3
-        hex:blacks7ar-Explorer-1.1.7
-        hex:blacks7ar-FeatherCollector-1.2.0
-        hex:blacks7ar-Fermenting-1.1.8
-        hex:blacks7ar-GlassPieces-1.2.7
-        hex:blacks7ar-Herbalist-1.5.0
-        hex:blacks7ar-Hunting-1.4.5
-        hex:blacks7ar-NotificationsOverhaul-1.0.3
-        hex:blacks7ar-VikingsDoSwim-1.4.2
-        hex:blacks7ar-WeaponHolsterOverhaul-1.2.2
-        hex:JereKuusela-Server_devcommands-1.113.0
-        hex:OdinPlus-BeeQueen-1.1.2
-        hex:OdinPlus-OdinsFoodBarrels-1.2.7
-        hex:RandomSteve-BreatheEasy-1.0.5
-        hex:Smoothbrain-Afterdeath-1.0.9
-        hex:Smoothbrain-Backpacks-1.3.10
-        hex:Smoothbrain-Blacksmithing-1.3.5
-        hex:Smoothbrain-Building-1.2.7
-        hex:Smoothbrain-ConversionSizeAndSpeed-1.0.18
-        hex:Smoothbrain-Cooking-1.2.3
-        hex:Smoothbrain-DarwinAwards-1.0.7
-        hex:Smoothbrain-DualWield-1.0.11
-        hex:Smoothbrain-Evasion-1.0.5
-        hex:Smoothbrain-Farming-2.2.3
-        hex:Smoothbrain-Foraging-1.0.11
-        hex:Smoothbrain-GapFiller-1.0.7
-        hex:Smoothbrain-Groups-1.2.11
-        hex:Smoothbrain-Guilds-1.1.14
-        hex:Smoothbrain-Jewelcrafting-2.0.10
-        hex:Smoothbrain-Lumberjacking-1.0.7
-        hex:Smoothbrain-Mining-1.1.7
-        hex:Smoothbrain-Network-1.1.1
-        hex:Smoothbrain-PackHorse-1.0.5
-        hex:Smoothbrain-PassivePowers-1.1.8
-        hex:Smoothbrain-Ranching-1.1.7
-        hex:Smoothbrain-Sailing-1.1.9
-        hex:Smoothbrain-ServerCharacters-1.4.17
-        hex:Smoothbrain-TargetPortal-1.2.6
-        hex:ValheimModding-Jotunn-2.30.1
-        hex:ValheimModding-JsonDotNET-13.0.4
-        hex:ValheimModding-YamlDotNet-16.3.1
-        ts:VentureValheim-Venture_Multiplayer_Tweaks-1.0.0
+      GALE_SYNC_CODE: ${GALE_SYNC_CODE:-9M5Z3V}
+      GALE_SYNC_CONFIGS: false
 
     networks:
       - tailscale
