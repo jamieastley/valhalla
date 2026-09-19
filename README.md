@@ -15,18 +15,20 @@ The current world seed for this playthrough is `Y0IRrfwvzK`.
   place file in root of `saves` volume.
 - ensure `init-permissions` container has been executed prior to (re)starting server container
 
-## Required environment variables
+## Environment variables
 
 The compose services expect the following environment variables to be set (e.g. in a `.env` file or
 exported in your shell):
 
-| Variable            | Required | Description                                                                                                               |
-|---------------------|----------|---------------------------------------------------------------------------------------------------------------------------|
-| `CF_API_EMAIL`      | Yes      | Cloudflare account email address used for the ACME DNS challenge.                                                         |
-| `CF_DOMAIN`         | Yes      | Base domain managed by Cloudflare. Routes are created as subdomains of this domain (e.g. `huginn.valhalla.${CF_DOMAIN}`). |
-| `ACME_CA_SERVER`    | No       | Let's Encrypt CA server URL. Defaults to `https://acme-v02.api.letsencrypt.org/directory`.                                |
-| `ACME_STORAGE`      | No       | Path inside the Traefik container where the ACME certificate store is kept. Defaults to `/certs/acme.json`.               |
-| `TRAEFIK_SUBDOMAIN` | No       | Subdomain used for the Traefik dashboard. Defaults to `traefik.valhalla`.                                                 |
+| Variable             | Required | Description                                                                                                               |
+|----------------------|----------|---------------------------------------------------------------------------------------------------------------------------|
+| `CF_API_EMAIL`       | Yes      | Cloudflare account email address used for the ACME DNS challenge.                                                         |
+| `CF_DOMAIN`          | Yes      | Base domain managed by Cloudflare. Routes are created as subdomains of this domain (e.g. `huginn.valhalla.${CF_DOMAIN}`). |
+| `ACME_CA_SERVER`     | No       | Let's Encrypt CA server URL. Defaults to `https://acme-v02.api.letsencrypt.org/directory`.                                |
+| `ACME_STORAGE`       | No       | Path inside the Traefik container where the ACME certificate store is kept. Defaults to `/certs/acme.json`.               |
+| `GALE_SYNC_CODE`     | No       | The profile sync code to use for the server modlist. Defaults to `9M5Z3V`                                                 |
+| `TAILSCALE_HOSTNAME` | No       | The hostname to apply to the Tailscale machine. Defaults to `valhalla`                                                    |
+| `TRAEFIK_SUBDOMAIN`  | No       | Subdomain used for the Traefik dashboard. Defaults to `traefik.valhalla`.                                                 |
 
 ### Required secret files
 
@@ -39,4 +41,12 @@ Create the following files under `./secrets/` before running `docker compose up`
 
 ## Mods
 
-Import `7TNNDJ` as a profile code within Gale.
+### Server
+
+- Gale profile sync code: `9M5Z3V`
+- [Modlist page](https://valheim.hexium.gg/mods/object_Object/ValhallaServer)
+
+### Client
+
+- Gale profile sync code: `7TNNDJ`
+- [Modlist page](https://valheim.hexium.gg/mods/object_Object/ValhallaClient)
