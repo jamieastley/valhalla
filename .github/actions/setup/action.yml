@@ -1,10 +1,14 @@
 # https://docs.github.com/en/actions/sharing-automations/creating-actions/creating-a-composite-action
 name: "Setup and validate environment"
+description: 'Initialises terraform and validates the given module'
 
 inputs:
   working-directory:
     description: 'The directory that steps should be executed in'
     default: './'
+  tf-api-token:
+    description: 'The Terraform API token used for the remote backend'
+    required: true
 
 outputs:
   fmtOutcome:
@@ -39,6 +43,8 @@ runs:
       working-directory: ${{ inputs.working-directory }}
       run: terraform init
       shell: bash
+      env:
+        TF_API_TOKEN: ${{ inputs.tf-api-token }}
 
     - name: Terraform Validate
       id: validate

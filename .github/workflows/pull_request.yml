@@ -31,3 +31,4 @@ jobs:
         id: setup
         with:
           working-directory: '${{ matrix.module }}'
+          tf-api-token: ${{ steps.load-secrets.outputs.TF_API_TOKEN }}
