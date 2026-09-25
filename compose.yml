@@ -12,7 +12,7 @@ services:
     restart: "no"
 
   tailscale:
-    image: tailscale/tailscale:v1.102.4
+    image: tailscale/tailscale:v1.102.5
     hostname: ${TAILSCALE_HOSTNAME:-valhalla}
     container_name: valhalla_tailscale
     secrets:
