@@ -39,7 +39,7 @@ services:
     restart: unless-stopped
 
   traefik:
-    image: traefik:v3.7.13
+    image: traefik:v3.7.14
     container_name: valhalla_traefik
     restart: unless-stopped
     cap_drop:
